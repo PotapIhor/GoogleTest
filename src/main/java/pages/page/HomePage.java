@@ -13,7 +13,6 @@ public class HomePage {
     }
 
     public HomePage open(){
-        driver.get("https://www.google.com.ua");
         return new HomePage(driver);
     }
 
