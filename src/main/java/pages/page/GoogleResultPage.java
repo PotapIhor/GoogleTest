@@ -5,9 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
-
-public class ResultPage {
+public class GoogleResultPage {
     private WebDriver driver;
     private WebElement q;
 
@@ -19,16 +17,16 @@ public class ResultPage {
         return getLinks;
     }  */
 
-    public ResultPage(WebDriver driver) {
+    public GoogleResultPage(WebDriver driver) {
         this.driver = driver;
     }
 
 
 
-   public Wiki getFirstLink() {
+   public Wikipedia getFirstLink() {
     q = driver.findElement(By.className("r"));
     q.click();
       // links.click();
-        return new Wiki(driver);
+        return new Wikipedia(driver, "https:/ /en.wikipedia.org/wiki/Nebuchadnezzar_II");
     }
 }
