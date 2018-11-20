@@ -1,5 +1,7 @@
 package tests;
 
+import  com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Configuration;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,11 +12,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.page.HomePage;
 import pages.page.ResultPage;
+import pages.page.UrlValidator;
 
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.open;
+import static java.nio.file.Files.size;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -24,9 +31,9 @@ public class GoogleTestPage {
     private WebDriver driver;
     //private WebElement profileUser;
 
-    @Before
+ /*   @Before
     public void setUp(){
-        System.setProperty("webdriver.chrome.driver", "C:\\ChromDriver\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\DriverChrom\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -34,10 +41,11 @@ public class GoogleTestPage {
 
 
 
-@After
+    @After
     public void tearDown() {
         driver.quit();
     }
+*/
 
     @Test
     public void testSearch() {
@@ -45,7 +53,6 @@ public class GoogleTestPage {
         HomePage home = new HomePage(driver);
         home = home.open();
         ResultPage result = home.search("Nebuchadnezzar ");
-
         Assert.assertTrue(result());
     }
        public Boolean result(){
@@ -64,15 +71,41 @@ public class GoogleTestPage {
         HomePage home = new HomePage(driver);
         home = home.open();
         ResultPage result = home.search("Nebuchadnezzar ");
-        result.getFirstLink();
+        result.getFirstLink().isPageOpened() ;
 
     }
 
 
     @Test
-    public void defender(){
+    public void defender() {
+        driver.get("https://en.wikipedia.org/wiki/Nebuchadnezzar_II");
+
+
+        String getUrlValidator = driver.getCurrentUrl();
+
 
     }
+
+ @Test
+  public void selenide(){
+     System.setProperty("webdriver.chrome.driver", "C:\\DriverChrom\\chromedriver.exe");
+
+     Configuration.browser = "chrome";
+     open("https://en.wikipedia.org/wiki/Nebuchadnezzar_II");
+     $("#searchInput").setValue("Java").pressEnter();
+  //   $$("#firstHeading").shouldHave(CollectionCondition.exactTexts("JAVA"));
+   $$("#firstHeading").shouldHaveSize(1);
+
+
+
     }
+}
+
+
+
+
+
+
+
 
 

@@ -17,10 +17,7 @@ public class ResultPage {
 
   /*  public List<WebElement> getLinks(){
         return getLinks;
-    }
-
-*/
-
+    }  */
 
     public ResultPage(WebDriver driver) {
         this.driver = driver;
