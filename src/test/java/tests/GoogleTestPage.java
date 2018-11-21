@@ -1,28 +1,20 @@
 package tests;
 
-import  com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Configuration;
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pages.page.HomePage;
-import pages.page.ResultPage;
-import pages.page.UrlValidator;
+import pages.page.GooglePage;
+import pages.page.GoogleResultPage;
 
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
-import static java.nio.file.Files.size;
-import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -50,9 +42,9 @@ public class GoogleTestPage {
     @Test
     public void testSearch() {
         driver.get("https://www.google.com.ua");
-        HomePage home = new HomePage(driver);
+        GooglePage home = new GooglePage(driver, "https://en.wikipedia.org");
         home = home.open();
-        ResultPage result = home.search("Nebuchadnezzar ");
+        GoogleResultPage result = home.search("Nebuchadnezzar ");
         Assert.assertTrue(result());
     }
        public Boolean result(){
@@ -68,9 +60,9 @@ public class GoogleTestPage {
 
     public void pageSearch(){
         driver.get("https://www.google.com.ua");
-        HomePage home = new HomePage(driver);
+        GooglePage home = new GooglePage(driver, "https://en.wikipedia.org");
         home = home.open();
-        ResultPage result = home.search("Nebuchadnezzar ");
+        GoogleResultPage result = home.search("Nebuchadnezzar ");
         result.getFirstLink().isPageOpened() ;
 
     }
