@@ -8,6 +8,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.page.GooglePage;
 import pages.page.GoogleResultPage;
+import pages.page.Wikipedia;
+import pages.page.Wikisearch;
+import tests.patternTest.PatternTest;
 
 
 import java.util.List;
@@ -18,31 +21,19 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-public class GoogleTestPage {
+public class GoogleTestPage extends PatternTest {
 
-    private WebDriver driver;
+    //public WebDriver driver;
     //private WebElement profileUser;
 
- /*   @Before
-    public void setUp(){
-        System.setProperty("webdriver.chrome.driver", "C:\\DriverChrom\\chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }
 
 
 
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
-*/
 
     @Test
     public void testSearch() {
         driver.get("https://www.google.com.ua");
-        GooglePage home = new GooglePage(driver, "https://en.wikipedia.org");
+        GooglePage home = new GooglePage(driver);
         home = home.open();
         GoogleResultPage result = home.search("Nebuchadnezzar ");
         Assert.assertTrue(result());
@@ -60,7 +51,7 @@ public class GoogleTestPage {
 
     public void pageSearch(){
         driver.get("https://www.google.com.ua");
-        GooglePage home = new GooglePage(driver, "https://en.wikipedia.org");
+        GooglePage home = new GooglePage(driver);
         home = home.open();
         GoogleResultPage result = home.search("Nebuchadnezzar ");
         result.getFirstLink().isPageOpened() ;
@@ -80,7 +71,7 @@ public class GoogleTestPage {
 
  @Test
   public void selenide(){
-     System.setProperty("webdriver.chrome.driver", "C:\\DriverChrom\\chromedriver.exe");
+    // System.setProperty("webdriver.chrome.driver", "C:\\ChromDriver\\chromedriver.exe");
 
      Configuration.browser = "chrome";
      open("https://en.wikipedia.org/wiki/Nebuchadnezzar_II");
@@ -91,6 +82,16 @@ public class GoogleTestPage {
 
 
     }
+
+@Test
+    public void testForSelenide(){
+    GooglePage googlePage = new GooglePage(driver).open();
+    GoogleResultPage googleResultPage = googlePage.search("Nebuchadnezzar");
+    Wikipedia wikipedia = googleResultPage.getFirstLink();
+    Wikisearch wikisearch = wikipedia.mainPageWiki();
+    Assert.assertTrue(wikisearch.isPageOpened());
+}
+
 }
 
 

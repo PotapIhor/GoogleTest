@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import javax.lang.model.element.Element;
 
 public class GooglePage extends ParentPage {
-    private WebDriver driver;
+    //private WebDriver driver;
     private WebElement fild;
 
     @FindBy(name = "q")
@@ -16,17 +16,18 @@ public class GooglePage extends ParentPage {
 
 
 
-    public GooglePage(WebDriver driver, String s) {
-        super(driver, "https://www.google.com.ua");
-        this.driver = driver;
+    public GooglePage(WebDriver driver) {
+        super(driver);
+      //  this.driver = driver;
     }
 
     public GooglePage open(){
-        return new GooglePage(driver, "https://en.wikipedia.org");
+        driver.get("https://www.google.com");
+        return new GooglePage(driver);
     }
 
     public GoogleResultPage search(String text) {
-        fild = driver.findElement(By.id("lst-ib"));
+        fild = driver.findElement(By.name("q"));
         fild.sendKeys(text);
         fild.submit();
         return new GoogleResultPage(driver);

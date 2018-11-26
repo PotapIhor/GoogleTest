@@ -6,14 +6,13 @@ import org.openqa.selenium.support.PageFactory;
 
 public class ParentPage {
     WebDriver driver;
-  //  String expectedUrl;
     WebElement elementsActions;
-    String baseUrl;
+    String expectedUrl;
+    String baseUrl ;
 
-    public ParentPage(WebDriver webDriver, String baseUrl) {
-     //   elementsActions = new ElementsActions(webDriver);
+    public ParentPage(WebDriver webDriver) {
         this.driver = webDriver;
-        this.baseUrl = baseUrl;
+        this.expectedUrl = baseUrl + expectedUrl;
         PageFactory.initElements(webDriver, this);
     }
 

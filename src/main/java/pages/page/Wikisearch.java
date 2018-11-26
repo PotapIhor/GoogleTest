@@ -10,7 +10,14 @@ public class Wikisearch extends Wikipedia {
 
 
     public Wikisearch(WebDriver driver) {
-        super(driver, "https:/ /en.wikipedia.org/wiki/Nebuchadnezzar_II");
+        super(driver);
+
+
     }
+    public boolean isPageOpened() {
+        return heading.getText().toString().contains("Nebuchadnezzar II");
+
+    }
+
 }
 

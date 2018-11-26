@@ -6,26 +6,27 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class Wikipedia extends GooglePage{
-    public WebDriver driver;
+   // public WebDriver driver;
 
 
-    @FindBy( xpath = "//*[@id=\"firstHeading\"]")
+    @FindBy( xpath = "//*[@id=\"searchInput\"]")
     WebElement heading;
 
 
-    public Wikipedia(WebDriver driver, String s) {
-        super(driver, "https://en.wikipedia.org");
-        this.driver = driver;
+    public Wikipedia(WebDriver driver) {
+        super(driver);
     }
-
-
 
     public boolean isPageOpened() {
-        return heading.getText().toString().contains("Nebuchadnezzar II");
+        return heading.getText().toString().contains("Welcome to Wikipedia");
 
     }
-        public Wikipedia mainPageWiki() {
-            heading = driver.findElement(By.className("r"));
+
+
+
+
+        public Wikisearch mainPageWiki() {
+            //heading = driver.findElement(By.className("r"));
             heading.click();
             // links.click();
             return new Wikisearch(driver);
