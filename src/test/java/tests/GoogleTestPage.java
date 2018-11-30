@@ -6,10 +6,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.page.GooglePage;
-import pages.page.GoogleResultPage;
-import pages.page.Wikipedia;
-import pages.page.Wikisearch;
+import pages.page.*;
 import tests.patternTest.PatternTest;
 
 
@@ -22,12 +19,6 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class GoogleTestPage extends PatternTest {
-
-    //public WebDriver driver;
-    //private WebElement profileUser;
-
-
-
 
 
     @Test
@@ -62,17 +53,10 @@ public class GoogleTestPage extends PatternTest {
     @Test
     public void defender() {
         driver.get("https://en.wikipedia.org/wiki/Nebuchadnezzar_II");
-
-
-        String getUrlValidator = driver.getCurrentUrl();
-
-
     }
 
- @Test
+    @Test
   public void selenide(){
-    // System.setProperty("webdriver.chrome.driver", "C:\\ChromDriver\\chromedriver.exe");
-
      Configuration.browser = "chrome";
      open("https://en.wikipedia.org/wiki/Nebuchadnezzar_II");
      $("#searchInput").setValue("Java").pressEnter();
@@ -83,15 +67,63 @@ public class GoogleTestPage extends PatternTest {
 
     }
 
-@Test
+    @Test
     public void testForSelenide(){
     GooglePage googlePage = new GooglePage(driver).open();
-    GoogleResultPage googleResultPage = googlePage.search("Nebuchadnezzar");
+    GoogleResultPage googleResultPage = googlePage.search("Wikipedia");
     Wikipedia wikipedia = googleResultPage.getFirstLink();
-    Wikisearch wikisearch = wikipedia.mainPageWiki();
+    Assert.assertTrue(wikipedia.isPageOpened());
+
+    Wikisearch wikisearch = wikipedia.input("Java Automation");
     Assert.assertTrue(wikisearch.isPageOpened());
 }
 
+    @Test
+    public void bigTest(){
+    GooglePage googlePage = new GooglePage(driver).open();
+    GoogleResultPage googleResultPage = googlePage.search("Wikipedia");
+    Wikipedia wikipedia = googleResultPage.getFirstLink();
+    Wikisearch wikisearch = wikipedia.input("Java Automation");
+    WikiJavaSearch wikiJavaSearch = wikisearch
+            .twoStepSearch("Список руководителей СССР")
+            .beck()
+            .twoStepSearch("Список руководителей СССР")
+            .clickForResult();
+   InfoHistorySearchWiki infoHistorySearchWiki = wikiJavaSearch.president();
+    Assert.assertTrue(infoHistorySearchWiki.realOpen());
+}
+
+    @Test
+    public void bigTest2(){
+        Boolean b = new GooglePage(driver)
+                .open()
+                .search("Wikipedia")
+                .getFirstLink()
+                .input("Java Automation")
+                .twoStepSearch("Список руководителей СССР")
+                .beck()
+                .twoStepSearch("Список руководителей СССР")
+                .clickForResult()
+                .president()
+                .realOpen();
+        Assert.assertTrue(b);
+    }
+
+    @Test
+    public void bigTest3(){
+        InfoHistorySearchWiki b = new GooglePage(driver)
+                .open()
+                .search("Wikipedia")
+                .getFirstLink()
+                .input("Java Automation")
+                .twoStepSearch("Список руководителей СССР")
+                .beck()
+                .twoStepSearch("Список руководителей СССР")
+                .clickForResult().choosePresident("Михаил Сергеевич Горбачёв");
+
+//                .realOpen();
+//         Assert.assertTrue(b);
+    }
 }
 
 

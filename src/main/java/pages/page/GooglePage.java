@@ -8,17 +8,14 @@ import org.openqa.selenium.support.FindBy;
 import javax.lang.model.element.Element;
 
 public class GooglePage extends ParentPage {
-    //private WebDriver driver;
-    private WebElement fild;
+ private WebElement fild;
 
     @FindBy(name = "q")
     public Element searchFild;
 
 
-
     public GooglePage(WebDriver driver) {
         super(driver);
-      //  this.driver = driver;
     }
 
     public GooglePage open(){

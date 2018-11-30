@@ -6,11 +6,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class Wikipedia extends GooglePage{
-   // public WebDriver driver;
-
 
     @FindBy( xpath = "//*[@id=\"searchInput\"]")
     WebElement heading;
+
+    @FindBy (name = "search")
+    private WebElement fieldSearchWiki;
 
 
     public Wikipedia(WebDriver driver) {
@@ -25,12 +26,12 @@ public class Wikipedia extends GooglePage{
 
 
 
-        public Wikisearch mainPageWiki() {
-            //heading = driver.findElement(By.className("r"));
-            heading.click();
-            // links.click();
-            return new Wikisearch(driver);
-        }
+    public Wikisearch input(String text) {
+        fieldSearchWiki.sendKeys(text);
+        fieldSearchWiki.submit();
+        return new Wikisearch(driver);
+
+    }
 
 }
 
