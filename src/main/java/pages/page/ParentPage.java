@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 public class ParentPage {
     WebDriver driver;
     String expectedUrl;
-    String baseUrl ;
+    String baseUrl;
 
     public ParentPage(WebDriver webDriver) {
         this.driver = webDriver;

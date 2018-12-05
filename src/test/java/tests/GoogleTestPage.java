@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.page.*;
-import tests.patternTest.PatternTest;
+import tests.PatternTest;
 
 
 import java.util.List;
@@ -111,18 +111,21 @@ public class GoogleTestPage extends PatternTest {
 
     @Test
     public void bigTest3(){
-        InfoHistorySearchWiki b = new GooglePage(driver)
+        GooglePage googlePage= new  GooglePage(driver)
                 .open()
                 .search("Wikipedia")
                 .getFirstLink()
                 .input("Java Automation")
                 .twoStepSearch("Список руководителей СССР")
-                .beck()
-                .twoStepSearch("Список руководителей СССР")
-                .clickForResult().choosePresident("Михаил Сергеевич Горбачёв");
+                .clickForResult().choosePresident("Владимир Ильич Ленин");
+                Assert.assertTrue(infoHistorySearchWiki.isTextPresent("Ленин, Владимир Ильич"));
+    }
 
-//                .realOpen();
-//         Assert.assertTrue(b);
+    @Test
+    public void bigTest4(){
+        WikiJavaSearch b = new WikiJavaSearch(driver)
+                .fast()
+                .clickForResult().choosePresident("Владимир Ильич Ленин");
     }
 }
 

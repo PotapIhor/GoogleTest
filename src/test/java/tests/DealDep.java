@@ -14,7 +14,7 @@ public class DealDep {
 
     @Before
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", "C:\\ChromDriver\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\DriverChrom\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
